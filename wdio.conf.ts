@@ -1,6 +1,4 @@
-import type { Options } from '@wdio/types'
-
-export const config: Options.Testrunner = {
+export const config: WebdriverIO.Config = {
     //
     // ====================
     // Runner Configuration
@@ -18,6 +16,11 @@ export const config: Options.Testrunner = {
     // If you need to configure how ts-node runs please use the
     // environment variables for ts-node or use wdio config's autoCompileOpts section.
     //
+
+    runner: 'local',
+    hostname: 'selenoid',
+    port: 4444,
+    path: "/wd/hub",
 
     autoCompileOpts: {
         autoCompile: true,
@@ -72,7 +75,7 @@ export const config: Options.Testrunner = {
     // and 30 processes will get spawned. The property handles how many capabilities
     // from the same test should run tests.
     //
-    maxInstances: 10,
+    maxInstances: process.env.SELENOID === 'true' ? 1 : 2,
     //
     // If you have trouble getting all important capabilities together, check out the
     // Sauce Labs platform configurator - a great tool to configure your capabilities:
@@ -83,17 +86,69 @@ export const config: Options.Testrunner = {
         // maxInstances can get overwritten per capability. So if you have an in-house Selenium
         // grid with only 5 firefox instances available you can make sure that not more than
         // 5 instances get started at a time.
-        maxInstances: 2,
         //
         browserName: 'chrome',
         'goog:chromeOptions': {
-            args: []
+            args: [
+                '--no-sandbox',
+                '--start-fullscreen',
+                '--disable-infobars',
+                '--disable-notifications',
+            ].concat(
+                process.env.SELENOID === 'true' ? [
+                    // When debugging with Selenoid support headless mode is not enabled
+                    // to allow viewing actions in the browser.
+                ] : [
+                    '--headless',
+                    '--disable-gpu',
+                ],
+            ),
+            prefs: {
+                'directory_upgrade': true,
+                'prompt_for_download': false,
+            }
+        },
+        'selenoid:options': {
+            enableLog: true,
+            ...(
+                process.env.SELENOID === 'true' ? {
+                    enableVNC: true,
+                    enableVideo: true,
+                } : {}
+            )
         }
+    },
+    {
+        browserName: 'firefox',
+        'moz:firefoxOptions': {
+            args: [
+                '--window-size=1280x1024x24'
+            ].concat(
+                process.env.SELENOID === 'true' ? [
+                    // When debugging with Selenoid support headless mode is not enabled
+                    // to allow viewing actions in the browser.
+                ] : [
+                    '-headless',
+                    '--disable-gpu',
+                ],
+            ),
+        },
+        'acceptInsecureCerts': true,
+        'selenoid:options': {
+            enableLog: true,
+            ...(
+                process.env.SELENOID === 'true' ? {
+                    enableVNC: true,
+                    enableVideo: true,
+                } : {}
+            )
+        }
+    }
         // If outputDir is provided WebdriverIO can capture driver session logs
         // it is possible to configure which logTypes to include/exclude.
         // excludeDriverLogs: ['*'], // pass '*' to exclude all driver session logs
         // excludeDriverLogs: ['bugreport', 'server'],
-    }],
+],
     //
     // ===================
     // Test Configurations
@@ -141,7 +196,8 @@ export const config: Options.Testrunner = {
     // Services take over a specific job you don't want to take care of. They enhance
     // your test setup with almost no effort. Unlike plugins, they don't add new
     // commands. Instead, they hook themselves up into the test process.
-    services: ['chromedriver', 'geckodriver', 'edgedriver'],
+    //!this should be commented if we're running tests in the docker containers !!!!!
+    // services: ['chromedriver', 'geckodriver', 'edgedriver'],
 
     // Framework you want to run your specs with.
     // The following are supported: Mocha, Jasmine, and Cucumber
@@ -291,7 +347,7 @@ export const config: Options.Testrunner = {
      * Runs after a WebdriverIO command gets executed
      * @param {String} commandName hook command name
      * @param {Array} args arguments that command would receive
-     * @param {Number} result 0 - command success, 1 - command error
+     * @param {Number} d 0 - command success, 1 - command error
      * @param {Object} error error object if any
      */
     // afterCommand: function (commandName, args, result, error) {

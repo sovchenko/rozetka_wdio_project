@@ -17,7 +17,7 @@ describe('Item', async () => {
         let itemTitle = await itemPage.getItemTitle();
         let itemPrice = await itemPage.getItemPrice();
         let cartModal = await itemPage.addItemToCart();
-        expect(await header.getCartItemAmount()).to.be.equal("2");
+        expect(await header.getCartItemAmount()).to.be.equal("1");
         let cartItemTitle = await cartModal.getCartItemTitle();
         let cartItemPrice = await cartModal.getCartItemPrice();
         expect(itemTitle).to.be.equal(cartItemTitle);
