@@ -3,3 +3,4 @@ allure-results/
 allure-report/
 .vscode/
 selenoid-outputs/
+.DS_Store
