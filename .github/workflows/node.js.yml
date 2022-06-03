@@ -51,8 +51,8 @@ jobs:
           PERSONAL_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           PUBLISH_BRANCH: gh-pages
           PUBLISH_DIR: allure-history
-          
-      - name: send telegram message on push
+
+      - name: Send telegram message on push, provide link to the allure results
         uses: appleboy/telegram-action@master
         with:
           to: ${{ secrets.TELEGRAM_TO }}
@@ -63,4 +63,4 @@ jobs:
             
             Repository: ${{ github.repository }}
             
-            See changes: https://github.com/${{ github.repository }}/commit/${{github.sha}}
+            Please see test results: https://sovchenko.github.io/rozetka_wdio_project
