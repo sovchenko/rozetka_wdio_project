@@ -1,0 +1,1 @@
+{"total":2,"items":[{"uid":"3ab3d2bcca8f454c7e5977fe716d545e","name":"User can open site.","statistic":{"failed":0,"broken":0,"skipped":0,"passed":2,"unknown":0,"total":2}},{"uid":"680eae7c15ca4aa57c919a4ddfa818be","name":"Cart feature","statistic":{"failed":0,"broken":0,"skipped":0,"passed":1,"unknown":0,"total":1}}]}
