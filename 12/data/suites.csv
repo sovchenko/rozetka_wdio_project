@@ -1,0 +1,7 @@
+"Status","Start Time","Stop Time","Duration in ms","Parent Suite","Suite","Sub Suite","Test Class","Test Method","Name","Description"
+"passed","Fri Jun 03 13:53:06 GMT 2022","Fri Jun 03 13:53:16 GMT 2022","10494","","User ","","User ","can search for the item","can search for the item","Verify that user is able to search for item             and searched term is displayed in the title."
+"passed","Fri Jun 03 13:52:24 GMT 2022","Fri Jun 03 13:52:30 GMT 2022","6719","","User ","","User ","can search for the item","can search for the item","Verify that user is able to search for item             and searched term is displayed in the title."
+"passed","Fri Jun 03 13:52:36 GMT 2022","Fri Jun 03 13:52:55 GMT 2022","18577","","Item","","Item","can be added to the cart","can be added to the cart","Verifies that item can be added to the cart,         title and price in the cart should match title and price of the added item."
+"passed","Fri Jun 03 13:53:03 GMT 2022","Fri Jun 03 13:53:06 GMT 2022","2670","","User ","","User ","can be opened","can be opened","User is able to open the site"
+"passed","Fri Jun 03 13:52:03 GMT 2022","Fri Jun 03 13:52:17 GMT 2022","14247","","Item","","Item","can be added to the cart","can be added to the cart","Verifies that item can be added to the cart,         title and price in the cart should match title and price of the added item."
+"passed","Fri Jun 03 13:52:21 GMT 2022","Fri Jun 03 13:52:24 GMT 2022","2505","","User ","","User ","can be opened","can be opened","User is able to open the site"
