@@ -6,7 +6,6 @@ services:
       - "./selenoid-outputs/output/:/output"
       - "/var/run/docker.sock:/var/run/docker.sock"
       - "./selenoid-outputs/logs:/opt/selenoid/logs"
-      - "./browsers.json:/etc/selenoid/browsers.json"
 
     command: [
         "-conf", # Flag for browsers configuration

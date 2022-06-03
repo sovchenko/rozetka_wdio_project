@@ -148,7 +148,7 @@ export const config: WebdriverIO.Config = {
         // it is possible to configure which logTypes to include/exclude.
         // excludeDriverLogs: ['*'], // pass '*' to exclude all driver session logs
         // excludeDriverLogs: ['bugreport', 'server'],
-],
+    ],
     //
     // ===================
     // Test Configurations
@@ -220,11 +220,11 @@ export const config: WebdriverIO.Config = {
     // The only one supported by default is 'dot'
     // see also: https://webdriver.io/docs/dot-reporter
     reporters: ['spec', ['allure', {
-         outputDir: 'allure-results',
-         addConsoleLogs: false,
-         disableWebdriverStepsReporting: true,
-         disableWebdriverScreenshotsReporting: false
-        }]],
+        outputDir: 'allure-results',
+        addConsoleLogs: false,
+        disableWebdriverStepsReporting: true,
+        disableWebdriverScreenshotsReporting: false
+    }]],
 
 
 
