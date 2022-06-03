@@ -4,7 +4,7 @@ local-build:
 
 local-up:
 	$(info Make: Starting docker in local env)
-	docker-compose -f docker-compose.yml -f docker-compose.local.yml up
+	docker-compose -f docker-compose.yml -f docker-compose.local.yml up --abort-on-container-exit --exit-code-from e2e
 
 local-down:
 	$(info Make: Stopping docker in local env)
